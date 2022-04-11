@@ -1,0 +1,27 @@
+<!-- wf2-2-31.html -->
+<script>
+  const formData = new FormData(); // formData 객체를 만듬
+  // 데이터 추가
+  formData.append("name", "zerocho");
+  formData.append("item", "orange");
+  formData.append("item", "melon");
+  // 데이터 존재 여부 확인
+  formData.has("item"); // true
+  formData.has("money"); // false;
+  // 데이터 조회
+  formData.get("item"); // orange
+  // 데이터 모두 조회
+  formData.getAll("item"); // ['orange', 'melon'];
+
+  formData.append("test", ["hi", "zero"]);
+  formData.get("test"); // hi, zero
+
+  // 데이터 삭제
+  formData.delete("test");
+
+  formData.get("test"); // null
+  // 데이터 수정
+  formData.set("item", "apple");
+
+  formData.getAll("item"); // ['apple'];
+</script>

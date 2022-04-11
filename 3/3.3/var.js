@@ -9,3 +9,7 @@ module.exports = {
   odd,
   even,
 };
+
+// exports 객체로도 모듈 만들 수 있음
+// exports.odd = "odd";
+// exports.even = "even";

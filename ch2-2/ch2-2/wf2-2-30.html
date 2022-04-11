@@ -1,0 +1,17 @@
+<!-- wf2-2-30.html -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  (async () => {
+    try {
+      const result = await axios.post("https://www.zerocho.com/api/post/json", {
+        name: "zerocho",
+        birth: 1994,
+      });
+      // 두 번째 인수로 데이터를 넣어 보냄
+      console.log(result);
+      console.log(result.data);
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+</script>

@@ -1,0 +1,18 @@
+<!-- wf2-2-33.html -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  // 주소창에 한글을 입력하면 처리하지 못하는 경우 발생
+  // -> encodeURIComponent로 한글 감싸줘서 처리
+  // 반대는 decodeURIComponent
+  (async () => {
+    try {
+      const result = await axios.get(
+        `https://www.zerocho.com/api/search/${encodeURIComponent("노드")}`
+      );
+      console.log(result);
+      console.log(result.data); // {}
+    } catch (error) {
+      console.error(error);
+    }
+  })();
+</script>

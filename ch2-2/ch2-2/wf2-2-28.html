@@ -1,0 +1,16 @@
+<!-- wf2-2-28.html -->
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+  // axios.get 내부에 new Promise()가 포함되어 있으므로
+  // .then, .catch 구문 사용 가능
+  axios
+    .get("https://www.zerocho.com/api/get")
+    .then((result) => {
+      console.log(result);
+      console.log(result.data); // {}
+      // 서버로부터 보낸 데이터
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+</script>
