@@ -1,3 +1,5 @@
+// 워커 스레드를 사용하지 않고 소수의 개수를 구하는 작업
+
 const min = 2;
 const max = 10000000;
 const primes = [];
@@ -19,7 +21,7 @@ function findPrimes(start, range) {
   }
 }
 
-console.time('prime');
+console.time("prime");
 findPrimes(min, max);
-console.timeEnd('prime');
+console.timeEnd("prime");
 console.log(primes.length);

@@ -1,7 +1,8 @@
-const zlib = require('zlib');
-const fs = require('fs');
+const zlib = require("zlib");
+const fs = require("fs");
 
-const readStream = fs.createReadStream('./readme4.txt');
+// 파일 압축 후 복사
+const readStream = fs.createReadStream("./readme4.txt");
 const zlibStream = zlib.createGzip();
-const writeStream = fs.createWriteStream('./readme4.txt.gz');
+const writeStream = fs.createWriteStream("./readme4.txt.gz");
 readStream.pipe(zlibStream).pipe(writeStream);
