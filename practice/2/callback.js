@@ -21,66 +21,76 @@ fs.access(
   `./${folderName}`,
   constants.F_OK | constants.W_OK | constants.R_OK,
   (err) => {
-    if (err) {
-      if (err.code === "ENOENT") {
-        // 2) 폴더가 존재하지 않으면 다음 내용 출력하고,
-        console.log(`${folderName} folder not exist.`);
-        // 2-1) 쓰기 권한을 갖는 homework1 폴더를 생성하고 전체 경로를 출력합니다.
-        fs.mkdir(`./${folderName}`, (err) => {
-          if (err) {
-            throw err;
-          }
+    if (!err) {
+      // 1) 폴더가 존재하지 않다면 다음 내용 출력
+      console.log(`${folderName} folder already exist.\n`);
+    } else if (err.code === "ENOENT") {
+      // 2) 폴더가 존재하지 않으면 다음 내용 출력하고,
+      console.log(`${folderName} folder not exist.`);
+      // 2-1) 쓰기 권한을 갖는 homework1 폴더를 생성하고 전체 경로를 출력합니다.
+      fs.mkdir(`./${folderName}`, (err) => {
+        if (err) {
+          console.log(`error code ${err.code} at ${err.syscall}`);
+        } else {
           console.log(`${folderName} folder created.\n`);
+
           // 2. 생성된 homework1 폴더에서 work1.txt 파일을 생성하고 파일의 아이디를 함께 출력합니다.
           fs.open(`./${folderName + path.sep + filename1}`, "w", (err, fd) => {
             if (err) {
-              throw err;
+              console.log(`error code ${err.code} at ${err.syscall}`);
+            } else {
+              console.log(
+                `${
+                  folderName + path.sep + filename1
+                } file (${fd}) is available.\n`
+              );
             }
-            console.log(
-              `${
-                folderName + path.sep + filename1
-              } file (${fd}) is available.\n`
-            );
+
+            // 3. 생성한 파일명 work1.txt을 homework1.txt로 변경하고, 결과를 출력합니다.
             fs.rename(
               `./${folderName + path.sep + filename1}`,
               `./${folderName + path.sep + filename2}`,
               (err) => {
                 if (err) {
-                  throw err;
-                }
-                console.log(
-                  `${filename1} was changed to ${filename2} at .${
-                    path.sep + folderName
-                  }\n`
-                );
-                fs.writeFile(
-                  `./${folderName + path.sep + filename2}`,
-                  buffer,
-                  (err) => {
-                    if (err) {
-                      throw err;
-                    }
-                    console.log(`${filename2} written.\n`);
-                    fs.readFile(
-                      `./${folderName + path.sep + filename2}`,
-                      (err, data) => {
-                        if (err) {
-                          throw err;
-                        }
-                        console.log(`${filename2}: ${data.toString()}`);
+                  console.log(`error code ${err.code} at ${err.syscall}`);
+                } else {
+                  console.log(
+                    `${filename1} was changed to ${filename2} at .${
+                      path.sep + folderName
+                    }\n`
+                  );
+
+                  // 4. homework1.txt 파일에 다음의 buffer의 내용을 기록하고 결과를 출력합니다.
+                  fs.writeFile(
+                    `./${folderName + path.sep + filename2}`,
+                    buffer,
+                    (err) => {
+                      if (err) {
+                        console.log(`error code ${err.code} at ${err.syscall}`);
+                      } else {
+                        console.log(`${filename2} written.\n`);
+
+                        // 5. homework1.txt 파일의 내용을 문자열로 화면에 출력합니다.
+                        fs.readFile(
+                          `./${folderName + path.sep + filename2}`,
+                          (err, data) => {
+                            if (err) {
+                              console.log(
+                                `error code ${err.code} at ${err.syscall}`
+                              );
+                            } else
+                              console.log(`${filename2}: ${data.toString()}`);
+                          }
+                        );
                       }
-                    );
-                  }
-                );
+                    }
+                  );
+                }
               }
             );
           });
-        });
-      } else {
-        throw err;
-      }
-    } else {
-      console.log(`${folderName} folder already exist.\n`); // 1) 폴더가 존재한다면 다음 내용 출력
+        }
+      });
     }
   }
 );
