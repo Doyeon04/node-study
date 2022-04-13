@@ -30,3 +30,12 @@ const immediate2 = setImmediate(() => {
 clearImmediate(immediate2);
 
 // 즉시 실행 -> 1초마다 실행 -> 1.5초 후 실행 -> 1초마다 실행
+
+// 순차적으로 실행하고 싶다면?
+
+// const timeout = setTimeout(() => {
+//   console.log('1.5초 후 실행');
+//   const interval = setInterval(() => {
+//     console.log('1초마다 실행');
+//   })
+// }, 1500);

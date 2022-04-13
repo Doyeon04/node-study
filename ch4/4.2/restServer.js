@@ -30,7 +30,8 @@ http
         // /도 /about도 /users도 아니면
         try {
           const data = await fs.readFile(`.${req.url}`);
-          return res.end(data);
+          // 주소에 적힌 파일을 제공
+          return res.end(data); // return을 써 명시적으로 함수 종료
         } catch (err) {
           // 주소에 해당하는 라우트를 못 찾았다는 404 Not Found error 발생
         }

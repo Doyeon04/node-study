@@ -17,6 +17,7 @@ const promise = new Promise((resolve, reject) => {
 promise
   .then((message) => {
     console.log(message); // resolve case
+    // Success 출력
   })
   .catch((error) => {
     console.error(error); // reject case

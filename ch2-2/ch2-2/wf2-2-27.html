@@ -3,6 +3,9 @@
 <!-- AJAX -->
 <script>
   var xhr = new XMLHttpRequest();
+  /* XMLHTTPRequest 객체는 서버와 상호작용하기 위하여 사용
+  전체 페이지의 새로고침 없이도 URL로부터 데이터를 받아올 수 있음
+  AJAX 프로그래밍에 주로 사용 */
   xhr.onreadystatechange = function () {
     // 요청에 대한 callback
     if (xhr.readyState === xhr.DONE) {
@@ -10,6 +13,7 @@
       if (xhr.status === 200 || xhr.status === 201) {
         // 응답코드가 200 또는 201이면
         console.log(xhr.responseText);
+        // 요청에 대한 응답을 텍스트로 갖는 DOMString 을 반환
       } else {
         console.log(xhr.responseText);
       }

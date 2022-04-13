@@ -1,7 +1,7 @@
 /**
- * testcode1.js 
+ * testcode1.js
  * This code is to substitute wf2-2-19.js and wf2-2-20.js
- * 
+ *
  * how to run:
  * $ node testcode1 __argv__
  * __argv__ : 0 - func0 for asynchronized codes
@@ -29,22 +29,24 @@ const func0 = () => {
   setTimeout(() => {
     x = x + 10000;
     console.log(`end with x=${x}`);
-  }, 1000);  
+  }, 1000);
 };
+// 1초 있다가 함수 네개 동시 실행
+// 동시에 백그라운드 갔다가 1초후에 실행됨
 
 // case 1: func1 - callback hell
 const func1 = () => {
   console.log(`start with x=${x}`);
-  setTimeout( () => {
+  setTimeout(() => {
     x = x + 10;
     console.log(`1st callback, x=${x}`);
-    setTimeout( () => {
+    setTimeout(() => {
       x = x + 100;
       console.log(`2nd callback, x=${x}`);
-      setTimeout( () => {
+      setTimeout(() => {
         x = x + 1000;
         console.log(`3rd callback, x=${x}`);
-        setTimeout( () => {
+        setTimeout(() => {
           x = x + 10000;
           console.log(`end with x=${x}`);
         }, 1000);
@@ -93,12 +95,13 @@ const func2 = () => {
 // user input case: 0, 1, 2
 let input = process.argv[2];
 
-if (input == 0 || input == undefined){  // async
+if (input == 0 || input == undefined) {
+  // async
   func0();
-}
-else if (input == 1){ // callback hell
+} else if (input == 1) {
+  // callback hell
   func1();
-}
-else {  // promise
+} else {
+  // promise
   func2();
 }

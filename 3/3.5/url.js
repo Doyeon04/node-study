@@ -14,3 +14,11 @@ const parsedUrl = url.parse(
 );
 console.log("url.parse():", parsedUrl);
 console.log("url.format():", url.format(parsedUrl));
+
+/* 
+protocol: http
+host: www.gilbut.co.kr
+path: book/bookList.aspx?sercate1=001001000
+search: ?sercate1=001001000
+query: sercate1=001001000
+*/

@@ -22,6 +22,7 @@ http
     // 주소가 /login으로 시작하는 경우
     if (req.url.startsWith("/login")) {
       const { query } = url.parse(req.url);
+
       const { name } = qs.parse(query);
       const expires = new Date();
       // 쿠키 유효 시간을 현재시간 + 5분으로 설정
